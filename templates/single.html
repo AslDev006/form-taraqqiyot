@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{post.name.title}} {% endblock title %}
+
+{% block style %}
+input[type=text], select {
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+
+input[type=submit] {
+width: 100%;
+background-color: #4CAF50;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+input[type=submit]:hover {
+background-color: #45a049;
+}
+.div-form{
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+form{
+    width:100%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-flow: column;
+}
+label, textarea, select, input{
+width: 30%;
+}
+{% endblock %}
+
+{% block content %}
+<div class="hero">
+    {% if post %}
+      <div class="users">
+      <div class="users__content">
+        <div class="users__list">
+          <div class="users__item">
+            <h3>{{ post.id }}</h3>
+          </div>
+          <div class="users__item">
+            <h3 class="username">{{ post.phonenumber }}</h3>
+          </div>
+          <div class="users__item">
+            <h3 class="comments">
+                {% if post.comment %}
+                {{ post.comment | truncatewords:5 }}
+                {% else %}
+                No Comment
+                {% endif %}
+            </h3>
+          </div>
+          <div class="users__item">
+            <h3 class="phone">{{ post.name }}</h3>
+          </div>
+          <div class="users__item">
+          <p class="date">{{ post.create_time | date:"Y   d-F  h:m:s" }}</p>
+
+          </div>
+          <div class="users__item">
+          <p class="date">{{ post.status }}</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="div-form">
+    <form method="post">{% csrf_token %}
+        <label for="comment">Comment</label>
+        <textarea name="comment" required id="comment" style="padding: 13px;" placeholder="Comment..........."></textarea>
+
+        <label for="status">Status</label>
+        <select id="status" name="status">
+            {% for stat in statuss %}
+            <option value="{{stat}}">{{stat}}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Submit" style="width: 30%;">
+    </form>
+
+</div>
+
+</div>
+{% endblock content %}

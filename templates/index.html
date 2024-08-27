@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Contact the Aslbek {% endblock title %}
+
+
+
+{% block content %}
+<div class="hero">
+
+  <div class="users">
+    <div class="users__content">
+      {% for post in pages %}
+
+      <div class="users__list">
+        <div class="users__item">
+          <h3>{{ post.id }}</h3>
+        </div>
+        <div class="users__item">
+          <h3 class="phone">{{post.phonenumber}}</h3>
+        </div>
+            <div class="users__item">
+            <h3 class="comments">
+                {% if post.comment %}
+                {{ post.comment | truncatewords:3 }}
+                {% else %}
+                No Comment
+                {% endif %}
+            </h3>
+          </div>
+        <div class="users__item">
+          <h3 class="name">{{ post.name.title }}</h3>
+        </div>
+        <div class="users__item">
+          <h3 class="name">{{ post.status.title }}</h3>
+        </div>
+        <div class="users__item">
+          <p class="date">{{ post.create_time | date:"Y   d-F  h:m:s" }}</p>
+        </div>
+        <div class="users__item">
+          <a href="{% url 'single' post.id %}">Edit</a>
+        </div>
+
+      </div>
+    {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<div class="container-pag">
+  {% if pages.has_other_pages %}
+  {% for i in pages.paginator.page_range %}
+  {% if pages.number == i %}
+<a href="#" class="w3-bar-item w3-button">{{i}}</a>
+{% else %}
+
+
+  <a href="?page={{ i }}" class="w3-bar-item w3-button">{{i}}</a>
+  {% endif %}
+  {% endfor %}
+
+{% endif %}
+
+</div>
+{% endblock content %}

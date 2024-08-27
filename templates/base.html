@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style/style.css' %}" />
+    <title>{% block title %} {% endblock title %}</title>
+    <style>
+      {% block style %}
+      {% endblock style %}
+      nav{
+        width: 100%;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0080ff;
+      }
+      .logo{
+        width: 100%;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding-left: 5%;
+      }
+      ul{
+        width: 100%;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      li,li a{
+        width: 120px;
+        text-decoration: none;
+        list-style-type: none;
+        font-size: 24px;
+        color: #fff;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+      }
+      li,li a:hover{
+        font-size: 30px;
+        color: red;
+      }
+      li a:active{
+        font-size: 30px;
+        color: red;
+      }
+      .container-pag{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container-pag a{
+        width: 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 24px;
+        margin: 0 2px;
+        font-weight: 700;
+        
+      }
+      .users__item a{
+        width: 100px;
+        height: 35px;
+        color: #fff;
+        font-size: 20px;
+        background-color: #0080ff;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+    </style>
+  </head>
+  <body>
+  <nav>
+    <div class="logo">
+      <img src="{% static 'image/logo.png' %}" alt="" style="width: 90px;">
+    </div>
+    <ul>
+      <li><a href="{% url 'home' %}">All</a></li>
+      <li><a href="{% url 'uncalled' %}">Uncalled</a></li>
+      <li><a href="{% url 'called' %}">Called</a></li>
+      <li><a href="{% url 'recalled' %}">Recalled</a></li>
+      <li><a href="{% url 'complete' %}">Complete</a></li>
+      <li><a href="{% url 'rejected' %}">Rejected</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+
+  </nav>
+{% block content %}
+
+{% endblock content %}
+
+
+  </body>
+</html>
