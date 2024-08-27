@@ -21,7 +21,7 @@ class Status(models.TextChoices):
 
 class Leeds(models.Model):
     name = models.CharField(max_length=255)
-    phonenumber = PhoneNumberField()
+    phonenumber = models.IntegerField()
     comment = models.TextField(null=True, blank=True)
     objects = models.Manager()
     status = models.CharField(max_length=50, choices=Status, default=Status.uncalled)

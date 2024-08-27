@@ -5,6 +5,7 @@ from phonenumber_field.formfields import PhoneNumberField
 
 
 class LeedsForm(forms.ModelForm):
+    phonenumber = forms.IntegerField(min_value=0, max_value=999999999)
     class Meta:
         model = Leeds
         fields = "__all__"

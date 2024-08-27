@@ -1,9 +1,12 @@
 from telebot import TeleBot
-bot = TeleBot('7357580477:AAFY4uGWUNXKXxvYxl0P0TIXHZEcypHHxN8')
+import environ
+env = environ.Env()
+environ.Env.read_env()
+bot = TeleBot(env('TOKEN'))
 
 
 
-ids = 5322589899
+ids = env('USER_ID')
 def get_post(data):
     bot.send_message(chat_id=ids, text=f"Sizga yangi murojaat mavjud !\n\n\n"
                                           f"Ism: {data['name']}\n"
